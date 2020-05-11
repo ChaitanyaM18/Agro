@@ -16,6 +16,9 @@ Including another URLconf
 from django.apps import apps
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # > Django-2.0
     path('', include(apps.get_app_config('oscar').urls[0])),  # > Django-2.0
 ]
+
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
