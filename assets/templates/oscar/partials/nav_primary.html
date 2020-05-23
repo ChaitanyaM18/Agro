@@ -1,0 +1,85 @@
+{% load currency_filters %}
+{% load category_tags %}
+{% load i18n %}
+{% load static %}
+
+
+
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+                <!-- Start Header Navigation -->
+                <div class='container'>
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="{{ homepage_url }}"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                  {% block nav_dropdown %}
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="dropdown {% if expand_dropdown %}open{% endif %}">
+                          <a href="#" class="nav-link dropdown-toggle arrow" {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
+                              {% trans "Store" %}
+                          </a>
+
+                          <ul class="dropdown-menu">
+                              {% category_tree depth=2 as tree_categories %}
+                              <li><a tabindex="-1" href="{% url 'catalogue:index' %}">{% trans "All products" %}</a></li>
+                              {% if tree_categories %}
+                                  <li class="divider"></li>
+                                  {% for tree_category in tree_categories %}
+                                      {% if tree_category.has_children %}
+                                          <li class="dropdown-submenu">
+                                              <a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                                              <ul class="dropdown-menu">
+                                              {% else %}
+                                                  <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
+                                              {% endif %}
+
+                                              {% for close in tree_category.num_to_close %}
+                                                  </ul></li>
+                                              {% endfor %}
+                                  {% endfor %}
+                              {% endif %}
+                              <li class="divider"></li>
+                              {% block nav_dropdown_extra_items %}
+                                  <li><a href="{% url 'offer:list' %}">{% trans "Offers" %}</a></li>
+                              {% endblock %}
+                          </ul>
+                          {% block nav_extra %}
+                          {% endblock %}
+                      </ul>
+                      <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
+
+                        {% include "oscar/partials/search.html" %}
+                      </ul>
+                  {% endblock %}
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                      <li>
+                    </li>
+                      <li>
+							<a class="btn" href="{% url 'basket:summary' %}" style="font-size:25px;">
+								<i class="fa fa-shopping-bag"></i>
+							</a>
+						</li>
+                    </ul>
+                <!-- End Atribute Navigation -->
+            </div>
+            <!-- Start Side Menu -->
+
+          </div>
+            <!-- End Side Menu -->
+        </nav>
+        <!-- End Navigation -->

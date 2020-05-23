@@ -1,0 +1,36 @@
+{% extends "oscar/layout.html" %}
+
+{% comment %}
+Keep the same header and footer as the standard layout template but override the
+main content area to split it into a sidebar and a content block
+{% endcomment %}
+{% block content_wrapper %}
+        {% block breadcrumbs %}{% endblock %}
+        <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+              <div class="right-product-box">
+
+                {% block header %}
+                <div class="page-header action">
+                  <h1>{% block headertext %}{% endblock %}</h1>
+                </div>
+                {% endblock %}
+
+                {% include "oscar/partials/alert_messages.html" %}
+
+                {% block content %}{% endblock %}
+              </div>
+              </div>
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                {% block column_left %}{% endblock %}
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- /row -->
+{% endblock %}

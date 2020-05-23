@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load widget_tweaks %}
+
+<form method="get" action="{% url 'search:search' %}" class="navbar-form navbar-right">
+    <div class="input-group">
+        {% render_field search_form.q class="form-control form-control-sm" %}
+    </div>
+</form>

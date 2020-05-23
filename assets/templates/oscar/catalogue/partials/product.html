@@ -1,0 +1,33 @@
+{% load display_tags %}
+{% load i18n %}
+{% load image_tags %}
+{% load reviews_tags %}
+
+
+
+{% block product %}
+<div class="box-img-hover">
+    {% block product_image %}
+    {% with image=product.primary_image %}
+        {% oscar_thumbnail image.original "x155" upscale=False as thumb %}
+        <a href="{{ product.get_absolute_url }}">
+            <img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="img-fluid">
+        </a>
+    {% endwith %}
+    {% endblock %}
+
+</div>
+<div class="why-text">
+  {% block product_title %}
+      <h4><a href="{{ product.get_absolute_url }}" title="{{ product.get_title }}">{{ product.get_title|truncatewords:4 }}</a></h4>
+  {% endblock %}
+  {% block product_price %}
+      <div class="product_price">
+          {% include "oscar/catalogue/partials/stock_record.html" %}
+          {% if not product.is_parent and not product.has_options %}
+              {% include "oscar/catalogue/partials/add_to_basket_form_compact.html" %}
+          {% endif %}
+      </div>
+  {% endblock %}
+</div>
+{% endblock %}

@@ -13,6 +13,8 @@ from oscar.defaults import *
 
 import os
 
+DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'assets',
 
     'oscar',
     'oscar.apps.analytics',
@@ -75,6 +78,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'haystack',
     'treebeard',
+    # 'easy_thumbnails',
     'sorl.thumbnail',
     'django_tables2',
 ]
@@ -99,7 +103,8 @@ ROOT_URLCONF = 'frobshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, os.path.join(BASE_DIR,
+                                                'assets/templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -183,12 +188,57 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'develop.t123@gmail.com'
+EMAIL_HOST_PASSWORD = 'Test@123'
+EMAIL_PORT = 587
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, os.path.join(BASE_DIR, 'assets/static'))
+
+LOGIN_REDIRECT_URL = '/'
+# Media Files (It contains all the uploaded files)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR,  os.path.join(BASE_DIR, 'assets/media'))
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'kimsecomm.custom': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        },
+    }
+}

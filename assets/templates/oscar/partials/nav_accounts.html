@@ -1,0 +1,43 @@
+{% load i18n %}
+
+
+
+<div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="custom-select-box">
+                    </div>
+                    <div class="right-phone-box">
+                        <p>Call US :- <a href="#"> +11 900 800 100</a></p>
+                    </div>
+                    <div class="our-link float-right">
+                        <ul>
+                          {% if user.is_authenticated %}
+                          {% block nav_account_navbar_authenticated %}
+
+                            <li>
+                              {% if num_unread_notifications > 0 %}
+                                  {# If user has new notifications - we change account link to go to inbox #}
+                                  <a href="{% url 'customer:notifications-inbox' %}">
+                                      <i class="fa fa-user s_color"></i>
+                                      {% trans "Account" %}
+                                      <span class="label label-warning">{{ num_unread_notifications }}</span>
+                                  </a>
+                              {% else %}
+                                  <a href="{% url 'customer:summary' %}"><i class="fa fa-user s_color"></i> {% trans "Account" %}</a>
+                              {% endif %}</li>
+                              {% if user.is_staff or perms.partner.dashboard_access %}
+                                  <li><a href="{% url 'dashboard:index' %}"><i class="icon-list-ul"></i> {% trans "Dashboard" %}</a></li>
+                              {% endif %}
+                              <li><a id="logout_link" href="{% url 'customer:logout' %}"><i class="icon-signout"></i> {% trans "Logout" %}</a></li>
+                          {% endblock %}
+                          {% else %}
+                              <li><a id="login_link" href="{% url 'customer:login' %}"><i class="icon-signin"></i> {% trans "Login or register" %}</a></li>
+                          {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

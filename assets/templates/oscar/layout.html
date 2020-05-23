@@ -1,0 +1,95 @@
+{% extends "oscar/base.html" %}
+{% load static %}
+
+{% block styles %}
+    {% comment %}
+        If you are developing Oscar's CSS, or overriding Oscar's CSS
+        files in your project, then set OSCAR_USE_LESS = True in your
+        settings file. This will enable the on-the-fly less compiler.
+    {% endcomment %}
+    {% if use_less %}
+        <!-- <link rel="stylesheet/less" type="text/css" href="{% static "oscar/less/styles.less" %}" /> -->
+    {% else %}
+        <!-- <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" /> -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    {% endif %}
+{% endblock %}
+
+{% block layout %}
+    {# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "oscar/partials/nav_accounts.html" %}
+
+    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
+    <header class="main-header">
+        {% block navigation %}
+            {% include "oscar/partials/nav_primary.html" %}
+        {% endblock %}
+    </header>
+
+    {# Main content of page - other layout templates may override this block #}
+    {% block content_wrapper %}
+                {% block breadcrumbs %}{% endblock %}
+                {% block header %}
+                    <div class="page-header action container">
+                        <h1>&nbsp;</h1>
+                    </div>
+                {% endblock %}
+                {% include "oscar/partials/alert_messages.html" %}
+                {% block subnavigation %}{% endblock %}
+                <div class="content">
+                    {% block subheader %}{% endblock subheader %}
+
+                    {# Div exists for AJAX updates to entire content section #}
+                    <div id="content_inner">{% block content %}{% endblock %}</div>
+                </div>
+    {% endblock %}
+
+    {% include "oscar/partials/footer.html" %}
+{% endblock %}
+
+{% block cdn_scripts %}
+  {{ block.super }}
+  {% if use_less and debug %}
+    {# Load the on-the-fly less compiler. Never do this in production. #}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+  {% endif %}
+{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}
+    {{ block.super }}
+    <!-- Twitter Bootstrap -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'js/inewsticker.js' %}"></script>
+    <script src="{% static 'js/bootsnav.js.' %}"></script>
+    <script src="{% static 'js/images-loded.min.js' %}"></script>
+    <script src="{% static 'js/isotope.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'js/form-validator.min.js' %}"></script>
+    <script src="{% static 'js/contact-form-script.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Oscar -->
+    <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
+{% endblock %}
+
+{% block extrascripts %}
+    {% include "oscar/partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}
+
+{% block onbodyload %}
+    {{ block.super }}
+    oscar.init();
+{% endblock %}
