@@ -14,7 +14,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="{{ homepage_url }}"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -22,15 +22,15 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                   {% block nav_dropdown %}
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'govt' %}">Government Policies</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'statesDisplay' %}">Select State</a></li>
+                        <li class="nav-item {% if '/' == request.path %} active {% endif %}"><a class="nav-link" href="/">Home</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li> -->
+                        <li class="nav-item {% if '/govt/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'govt' %}">Government Policies</a></li>
+                        <li class="nav-item {% if '/statesDisplay/' in request.path %} active {% endif %}"><a class="nav-link" href="{% url 'statesDisplay' %}">Select State</a></li>
 
 
 
-                        <li class="dropdown {% if expand_dropdown %}open{% endif %}">
-                          <a href="#" class="nav-link dropdown-toggle arrow" {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
+                        <li class="dropdown {% if expand_dropdown %}open{% endif %} {% if '/catalogue/' in request.path %} active {% endif %}">
+                          <a href="#" class="nav-link dropdown-toggle arrow " {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
                               {% trans "Store" %}
                           </a>
 
@@ -73,10 +73,9 @@
                 <div class="attr-nav">
                     <ul>
                       <li>
-                    </li>
-                      <li>
 							<a class="btn" href="{% url 'basket:summary' %}" style="font-size:25px;">
 								<i class="fa fa-shopping-bag"></i>
+                <sup style="border: 3px solid #b0b435;padding: 3px;font-size: 17px; border-radius: 19px;">{{request.basket.num_lines}}</sup>
 							</a>
 						</li>
                     </ul>

@@ -1,20 +1,40 @@
 {% extends "oscar/layout.html" %}
 
+
+{% block breadcrumbs %}
+<div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Crop List</h2>
+                    <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/statesDisplay/">State List</a></li>
+                        <li class="breadcrumb-item active">Crop List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
 {% block content %}
 <div class="categories-shop">
   <div class="container">
     <div class="row">
+      {% for crop in crops %}
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 psx" >
         <div class="shop-cat-box" style="max-height: 250px;" >
-          {% for crop in crops %}
           <img class="img-responsive" src="{{ crop.crop_image.url }}" alt="" />
             <h2 class="text-white">{{ crop.crop_name }}<br></h2>
             {% if crop.id %}
-            <a class="btn hvr-hover" href="{% url 'cropDisplay' pk=crop.id %}">View</a>
+            <a class="btn hvr-hover" href="{% url 'cropDisplay' id=crop.state.id pk=crop.id  %}">View</a>
             {% endif %}
-          {% endfor %}
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>

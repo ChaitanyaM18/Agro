@@ -1,12 +1,28 @@
 {% extends "oscar/layout.html" %}
 
+{% block breadcrumbs %}
+<div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Government schemes in agriculture</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Policies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
 {% block content %}
 <div class="container" style=" line-height: 2.0;">
-  <h2 class="text-success py-3">Government schemes in agriculture</h2>
     <article>{{ flatpage.content }}</article>
     {% if model %}
       {% for obj in model %}
-        <a href="{{ obj.link }}">
+        <a href="{{ obj.link }}" target="_blank">
         <h4 class="text-info py-3">{{ obj.id }}.&nbsp;&nbsp;{{ obj.title }}</h4></a>
         <p class="font-weight-bold">
           {{ obj.description }}

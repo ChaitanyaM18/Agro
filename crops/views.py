@@ -1,25 +1,34 @@
 from django.shortcuts import render,get_object_or_404
 from .models import States,StateCrops
+from django.views import generic
 
-def statesDisplay(request):
-    states = States.objects.all()
-    crops = StateCrops.objects.all()
-    context = {
-        'states' : states,
-        'crops' : crops,
-    }
-    return render(request,'crops/states.html',context)
 
-def cropList(request):
-    crops = StateCrops.objects.all()
-    context = {
-        'crops' : crops,
-    }
-    return render(request,'crops/listCrops.html',context)
+class statesDisplay(generic.ListView):
+    template_name = 'crops/states.html'
+    model = States
+    context_object_name = 'states'
 
-def cropDisplay(request, pk):
-    crops = StateCrops.objects.filter(state__id = pk)
-    context = {
-        'crops' : crops,
-    }
-    return render(request,'crops/crops.html',context)
+
+class cropList(generic.TemplateView):
+    template_name = 'crops/listCrops.html'
+    model = StateCrops
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(cropList,
+                        self).get_context_data(*args, **kwargs)
+        obj = self.kwargs['id']
+        context['crops'] = StateCrops.objects.filter(state__id=obj)
+        return context
+
+
+class cropDisplay(generic.TemplateView):
+    template_name = 'crops/crops.html'
+    model = StateCrops
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(cropDisplay,
+                        self).get_context_data(*args, **kwargs)
+        obj = self.kwargs['id']
+        obj1 = self.kwargs['pk']
+        context['crops'] = StateCrops.objects.filter(state__id=obj, id=obj1)
+        return context

@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('statesDisplay/', views.statesDisplay, name='statesDisplay'),
-    path('cropList/', views.cropList, name='cropList'),
-    path('cropDisplay/<int:pk>', views.cropDisplay, name='cropDisplay'),
+    path('statesDisplay/', views.statesDisplay.as_view(), name='statesDisplay'),
+    path('statesDisplay/<int:id>', views.cropList.as_view(), name='cropList'),
+    path('statesDisplay/<int:id>/<int:pk>', views.cropDisplay.as_view(), name='cropDisplay'),
 ]

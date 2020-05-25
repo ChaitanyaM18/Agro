@@ -1,5 +1,22 @@
 {% extends "oscar/layout.html" %}
 
+{% block breadcrumbs %}
+<div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>States List</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">States List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
 {% block content %}
 <div class="categories-shop">
   <div class="container">
@@ -9,7 +26,7 @@
         <div class="shop-cat-box" style="max-height: 250px;">
           <img class="img-responsive" src="{{ state.state_image.url }}" alt="" />
           <h2 class="text-white"><br></h2>
-          <a class="btn hvr-hover" href="{% url 'cropList' %}">{{ state.state_name }}</a>
+          <a class="btn hvr-hover" href="{% url 'cropList' id=state.id %}">{{ state.state_name }}</a>
         </div>
       </div>
       {% endfor %}

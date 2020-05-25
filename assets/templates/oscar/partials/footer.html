@@ -1,12 +1,48 @@
 {% load i18n %}
-<footer class="footer container-fluid">
+<footer >
     {% block footer %}
-        {% comment %}
-            Could be used for displaying links to privacy policy, terms of service, etc.
-            We have a CSS class defined:
-                <ul class="footer_links inline">
-                    ...
-                </ul>
-         {% endcomment %}
+    <div class="footer-main">
+        <div class="container">
+    <div class="row">
+
+    </div>
+    <hr>
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-widget">
+                        <h4>About smart Farmer</h4>
+                        <p>Agriculture is very much essential for the maintenance of our life. But regrettably it is largely unorganized, the assured quality seeds which is critical for attaining high crop yields are out of reach due to high prices. Govt. programs proposed for the benefit of farming do not reach small farmers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-link">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'catalogue:index' %}">Products</a></li>
+                            <li><a href="{% url 'govt' %}">Govt Policies</a></li>
+                            <li><a href="{% url 'statesDisplay' %}">Crop Info</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link-contact">
+                          <h4>Contact Us</h4>
+                          <ul>
+                              <li>
+                                  <p><i class="fas fa-map-marker-alt"></i>Address: Office # 217,R.K .Marg,<br> Hindwadi 1st Cross Belgaum <br>  </p>
+                              </li>
+                              <li>
+                                  <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+7975361715">+7975361715</a></p>
+                              </li>
+                              <li>
+                                  <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">info@webcreintors.com</a></p>
+                              </li>
+                          </ul>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endblock %}
 </footer>
