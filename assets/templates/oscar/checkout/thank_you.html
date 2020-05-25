@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
     <p class="lead">
         {% blocktrans with number=order.number %}
         Your order has been placed and a confirmation email has been sent - your order number is
@@ -204,4 +205,5 @@
     {% if send_analytics_event %}
         {% include "oscar/partials/google_analytics_transaction.html" %}
     {% endif %}
+  </div>
 {% endblock %}
