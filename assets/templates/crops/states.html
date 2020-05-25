@@ -1,0 +1,19 @@
+{% extends "oscar/layout.html" %}
+
+{% block content %}
+<div class="categories-shop">
+  <div class="container">
+    <div class="row">
+      {% for state in states %}
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 psx" width="100px" height="100px">
+        <div class="shop-cat-box" style="max-height: 250px;">
+          <img class="img-responsive" src="{{ state.state_image.url }}" alt="" />
+          <h2 class="text-white"><br></h2>
+          <a class="btn hvr-hover" href="{% url 'cropList' %}">{{ state.state_name }}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

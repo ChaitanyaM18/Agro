@@ -1,0 +1,21 @@
+{% extends "oscar/layout.html" %}
+
+{% block content %}
+<div class="categories-shop">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 psx" >
+        <div class="shop-cat-box" style="max-height: 250px;" >
+          {% for crop in crops %}
+          <img class="img-responsive" src="{{ crop.crop_image.url }}" alt="" />
+            <h2 class="text-white">{{ crop.crop_name }}<br></h2>
+            {% if crop.id %}
+            <a class="btn hvr-hover" href="{% url 'cropDisplay' pk=crop.id %}">View</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

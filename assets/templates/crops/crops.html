@@ -1,0 +1,53 @@
+{% extends "oscar/layout.html" %}
+
+{% block content %}
+<div class="box-add-products">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12  ">
+        <div class="offer-box-products pt-3" style="max-width:100px;">
+          {% for crop in crops %}
+          <h1>{{ crop.crop_name  }}</h1>
+                 <img src="{{ crop.crop_image.url }}" class="image-fluid" style="max-height: 200px;" >
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12" >
+        <div class="offer-box-products1 pl-5 pt-0">
+          <p class="text-justify font-weight-bold">{{  crop.crop_description }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h3 class="pt-5 pb-4 text-success">Kind of fertilizers to be used:</h3>
+        <p class="text-justify font-weight-bold pr-4 pull-right">{{ crop.fertilizers }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+<!-- <h1>soil</h1>
+<button type="button" class="btn btn-primary align-text-center" data-toggle="modal" data-target="#exampleModalLong">
+Soil Info
+</button>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      ...
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</div>
+</div>  -->

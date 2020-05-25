@@ -24,6 +24,11 @@
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'govt' %}">Government Policies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'statesDisplay' %}">Select State</a></li>
+
+
+
                         <li class="dropdown {% if expand_dropdown %}open{% endif %}">
                           <a href="#" class="nav-link dropdown-toggle arrow" {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
                               {% trans "Store" %}

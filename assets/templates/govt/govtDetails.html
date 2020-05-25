@@ -1,0 +1,17 @@
+{% extends "oscar/layout.html" %}
+
+{% block content %}
+<div class="container" style=" line-height: 2.0;">
+  <h2 class="text-success py-3">Government schemes in agriculture</h2>
+    <article>{{ flatpage.content }}</article>
+    {% if model %}
+      {% for obj in model %}
+        <a href="{{ obj.link }}">
+        <h4 class="text-info py-3">{{ obj.id }}.&nbsp;&nbsp;{{ obj.title }}</h4></a>
+        <p class="font-weight-bold">
+          {{ obj.description }}
+        </p>
+      {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
