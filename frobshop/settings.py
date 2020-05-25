@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'assets',
     'govt',
+    'crops',
 
     'oscar',
     'oscar.apps.analytics',

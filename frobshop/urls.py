@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # > Django-2.0
     path('', include('home.urls')),
     path('',include('govt.urls')),
+    path('',include('crops.urls')),
     path('', include(apps.get_app_config('oscar').urls[0])),  # > Django-2.0
 ]
 
