@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'assets',
     'govt',
     'crops',
+    'razorpay_api',
 
     'oscar',
     'oscar.apps.analytics',
@@ -179,6 +180,11 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 }
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
+
+
+RAZORPAY_API_KEY = "rzp_test_XGMDJiEeajJ50g"
+RAZORPAY_API_SECRET = "gJsgLswYi53MPkMUc5HP4190"
+
 
 LANGUAGE_CODE = 'en-us'
 

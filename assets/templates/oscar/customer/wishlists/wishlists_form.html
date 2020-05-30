@@ -1,26 +1,33 @@
 {% extends "oscar/customer/baseaccountpage.html" %}
 {% load i18n %}
 
+
 {% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="/">{% trans 'Home' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'customer:wishlists-list' %}">{% trans 'Wish Lists' %}</a>
-        </li>
-        <li class="active">
-            {% if wishlist %}
-                {{ wishlist.name }}
-            {% else %}
-                {% trans "Create" %}
-            {% endif %}
-        </li>
-    </ul>
-{% endblock %}
+    <div class="all-title-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>{% if wishlist %}
+                            {{ wishlist.name }}
+                        {% else %}
+                            {% trans "Create" %}
+                        {% endif %}</h2>
+                        <ul class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="/">{% trans 'Home' %}</a></li>
+                          <li class="breadcrumb-item"><a href="{% url 'customer:summary' %}">{% trans 'Account' %}</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'customer:wishlists-list' %}">{% trans 'Wish Lists' %}</a></li>
+                            <li class="breadcrumb-item active">{% if wishlist %}
+                                {{ wishlist.name }}
+                            {% else %}
+                                {% trans "Create" %}
+                            {% endif %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock breadcrumbs %}
+
 
 {% block tabcontent %}
     <form method="post" data-behaviours="lock">
@@ -37,8 +44,8 @@
             </p>
         {% endif %}
         <div class="form-group">
-            <button class="btn btn-lg btn-primary" type="submit" data-loading-text="{% trans 'Saving...' %}">{% trans "Save" %}</button>
-            {% trans "or" %} <a href="#" onclick="history.go(-1);return false" >{% trans "cancel" %}</a>.
+            <button class="btn btn-sm btn-primary" style="background: #b0b435; color: #000; border:#b0b435;" type="submit" data-loading-text="{% trans 'Saving...' %}">{% trans "Save" %}</button>
+            {% trans "or" %} <a href="#" class="btn btn-sm btn-primary" style="background: #b0b435; color: #000; border:#b0b435;" onclick="history.go(-1);return false" >{% trans "Cancel" %}</a>.
         </div>
     </form>
 {% endblock tabcontent %}

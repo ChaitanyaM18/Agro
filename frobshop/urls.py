@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.apps import apps
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,6 +27,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('',include('govt.urls')),
     path('',include('crops.urls')),
+    path('razorpay_api/', include('razorpay_api.urls',
+                                  namespace='razorpay_api')),
     path('', include(apps.get_app_config('oscar').urls[0])),  # > Django-2.0
 ]
 
