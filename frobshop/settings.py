@@ -46,10 +46,11 @@ INSTALLED_APPS = [
     'govt',
     'crops',
     'razorpay_api',
+    'checkout',
+    # 'checkout..apps.CheckoutConfig',
 
     'oscar',
     'oscar.apps.analytics',
-    'oscar.apps.checkout',
     'oscar.apps.address',
     'oscar.apps.shipping',
     'oscar.apps.catalogue',
@@ -182,8 +183,8 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 
-RAZORPAY_API_KEY = "rzp_test_XGMDJiEeajJ50g"
-RAZORPAY_API_SECRET = "gJsgLswYi53MPkMUc5HP4190"
+RAZORPAY_API_KEY = "rzp_test_JvBj19y4DPuYct"
+RAZORPAY_API_SECRET = "Jtkicd9YFnlLldhTQkiE0CTA"
 
 
 LANGUAGE_CODE = 'en-us'

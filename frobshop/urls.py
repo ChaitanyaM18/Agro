@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('',include('govt.urls')),
     path('',include('crops.urls')),
-    path('razorpay_api/', include('razorpay_api.urls',
+    re_path('razorpay_api/', include('razorpay_api.urls',
                                   namespace='razorpay_api')),
     path('', include(apps.get_app_config('oscar').urls[0])),  # > Django-2.0
 ]

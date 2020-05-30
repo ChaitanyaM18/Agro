@@ -7,7 +7,7 @@ urlpatterns = [
     re_path(r'^preview/(?P<basket_id>\d+)/$',
         views.SuccessResponseView.as_view(),
         name='razorpay-success-response'),
-    re_path(r'^cancel/(?P<basket_id>\d+)/(?P<transaction_id>[a-z0-9]{32})$',
+    re_path(r'^cancel/(?P<basket_id>\d+)$',
     views.CancelResponseView.as_view(),
         name='canceld-request'),
 ]

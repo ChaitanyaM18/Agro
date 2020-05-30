@@ -17,7 +17,7 @@ def start_transaction(basket, amount, user=None, email=None):
             currency = getattr(settings, 'OSCAR_DEFAULT_CURRENCY', 'INR')
         intial_transaction = IntialTransaction(
             user=user, amount=amount, currency_type=currency, status="initiated",
-            basket_id=basket.id, transaction_id=uuid4().hex[:32], email=email
+            basket_id=basket.id, transaction_id='1', email=email
         )
         intial_transaction.save()
         return intial_transaction
