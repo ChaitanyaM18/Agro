@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'govt',
     'crops',
     'razorpay_api',
-    'checkout',
+    'oscarapp.checkout.apps.CheckoutConfig',
     # 'checkout..apps.CheckoutConfig',
 
     'oscar',

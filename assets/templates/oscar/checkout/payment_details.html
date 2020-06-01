@@ -32,8 +32,8 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     var options = {
-        "key": "rzp_test_JvBj19y4DPuYct",
-        "amount": '{{ order_total }}',
+        "key": "{{rz_key}}",
+        "amount": '{{ amount }}',
         "buttontext": "Pay with Razorpay",
         "name": "{{name}}",
         "description": "{{description}}",
@@ -41,7 +41,7 @@
         "theme.color": "{{theme_color}}",
         "order_id": "{{ rz_order.id }}",
         "handler": function (response){
-            var url = "{% url 'razorpay_api:razorpay-success-response' basket_id=basket.id %}";
+            var url = "{% url 'checkout:thank-you'%}";
             var params = {
                 'rz_id': response.razorpay_payment_id,
                 'txn_id': "{{ txn_id }}"
