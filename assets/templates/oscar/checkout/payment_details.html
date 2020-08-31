@@ -41,12 +41,12 @@
         "theme.color": "{{theme_color}}",
         "order_id": "{{ rz_order.id }}",
         "handler": function (response){
-            var url = "{% url 'checkout:thank-you'%}";
+            var url = "{% url 'checkout:preview'%}";
             var params = {
-                'rz_id': response.razorpay_payment_id,
-                'txn_id': "{{ txn_id }}"
+                'order_number': "{{order_number}}",
+                'order_id': "{{ order_id }}"
             };
-            window.location = url + "?" + $.param(params);
+            window.location = url;
         },
         "prefill": {
             "email": "{{ email }}"
